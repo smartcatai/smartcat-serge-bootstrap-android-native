@@ -1,0 +1,51 @@
+sync
+{
+    ts
+    {
+        @inherit                                common.serge.inc#common-settings/ts
+
+        data
+        {
+            # Project ID to synchronize data with.
+            # To get the ID, navigate to the target project and take it's ID from the URL.
+            # For example, if the URL is
+            # https://us.smartcat.ai/projects/01234567-890a-bcde-f012-34567890abcd/files?documentPage=1
+            # then the ID will be 01234567-890a-bcde-f012-34567890abcd
+            project_id                          01234567-890a-bcde-f012-34567890abcd
+        }
+    }
+
+    vcs
+    {
+        @inherit                                common.serge.inc#common-settings/vcs
+
+        data
+        {
+            local_path                          ../vcs/android-native
+            remote_path                         ssh://username@git-server.local/android-native.git
+        }
+    }
+}
+
+jobs
+{
+    {
+        @inherit                                common.serge.inc#common-settings/job
+                                                android-native.serge.inc#common-settings/job
+
+        name                                    Localize Android XML files for project 'android-native'
+        id                                      android-native.xml
+        db_namespace                            android-native
+
+        /*
+        Destination (target) languages must be recognized by Smartcat.
+        See https://smartcat.ai/Home/Languages
+        */
+        destination_languages                   de ru
+
+        source_dir                              ../vcs/android-native/src/main/res/values
+        output_file_path                        ../vcs/android-native/src/main/res/values-%LOCALE:ANDROID%/%NAME%.%EXT%
+
+        ts_file_path                            ../ts/android-native/%LANG%/%FILE%.po
+    }
+}

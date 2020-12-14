@@ -1,0 +1,13 @@
+#!/bin/bash
+
+DIR=$(perl -e "use Cwd qw(abs_path); use File::Basename; print dirname(abs_path('$0'))")
+
+echo "Mounting $DIR as /data"
+docker run \
+    --rm \
+    -v "$DIR:/data" \
+    -v "$DIR/.ssh:/tmp/.ssh" \
+    -it \
+    --entrypoint boot/serge-shell.sh \
+    --env PS1="\[\033[01;35m\][Serge Shell]\[\033[00m\] \w \$ " \
+    smartcatcom/serge

@@ -1,0 +1,8 @@
+~*
+.ssh
+.DS_Store
+
+db
+log
+ts
+vcs
