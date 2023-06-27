@@ -1,3 +1,15 @@
+&nbsp;
+
+&nbsp;
+
+### This repository is deprecated. Smartcat now has a dedicated workflow, APIs and CLI to work with software localization projects. Check out our [Software Localization Projects in Smartcat](https://developers.smartcat.com/software-localization/) guide.
+
+&nbsp;
+
+&nbsp;
+
+---
+
 # Sample continuous localization project for a native Android application
 
 This example project has everything you need to localize your native Android application on [Smartcat](https://smartcat.ai/) platform, using a fully automated *continuous localization* approach.
